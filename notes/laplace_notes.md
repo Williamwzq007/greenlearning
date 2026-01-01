@@ -1,10 +1,18 @@
 # Notes on the Laplace Example in GreenLearning
 
-These notes record my understanding of the Laplace benchmark reproduced using the GreenLearning framework.
+These notes record my own understanding of the Laplace benchmark reproduced using the GreenLearning framework.
 
 The goal is not to modify the method, but to clarify what is being learned by the model and how the reproduced numerical results relate to theoretical expectations.
 
+These records are compiled through my hands-on replication of the code, with assistance from AI tools for structural organization and clarifying complex theoretical concepts.
+
 ---
+## 0. Ultimate Goal: An intuitive way to understand what we are trying to do:
+We are trying to constructa neural network–based solver that learns the solution operator for a fixed PDE, 
+mapping arbitrary forcing functions f(x) to solutions u(x).
+
+
+To achieve our goal, Green's Function would be the key tool.
 
 ## 1. The Laplace problem
 
@@ -52,9 +60,11 @@ where:
 - `G_theta(x, y)` is a neural network approximation of the Green’s function,
 - `u_hom(x)` is a neural network representing the homogeneous solution.
 
-The networks are trained by minimizing the PDE residual rather than by directly supervising the Green’s function.
+The networks are trained by minimizing the PDE residual rather than by directly supervising the Green’s function. After obtaining a candidate solution u(x), it is substituted back into the PDE,
+and the neural network parameters are optimized to minimize the resulting residual.
 
-Importantly, the model learns a representation of the **solution operator**, not a single solution corresponding to a fixed forcing.
+
+Importantly, the model learns a representation of the **solution operator**, not a single solution corresponding to a fixed forcing, which generalizes across different forcing functions within the same operator setting.
 
 ---
 
@@ -115,7 +125,8 @@ Possible extensions include:
 - ablation studies on network architecture or activation functions,
 - reproduction of more challenging operators (e.g. variable-coefficient or Helmholtz problems).
 
-These were not explored here.
+These directions are left for future work.
+
 
 ---
 
