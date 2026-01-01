@@ -11,7 +11,7 @@ def main():
     model = gl.Model(G_network, U_hom_network)
 
     # Train the model on the selected dataset
-    model.train("examples/datasets/", "helmholtz")
+    model.train("examples/datasets/", "laplace")
 
     # Plot the results
     model.plot_results()
